@@ -6,7 +6,19 @@ public class Player {
     private int numFinish;
 
     /**Used to indicate whether or not the player should lose a turn on the next round*/
-    boolean loseTurn;
+    private boolean loseTurn;
+
+    /**Used to indicate whether or not the player should get an extra turn on the next round*/
+    private boolean extraTurn;
+
+    /**player's stepper item */
+    private Stepper steppy;
+
+    /**player's zigzagger item */
+    private Zigzagger ziggy;
+
+    /**player's bumper item */
+    private Bumper bumpy;
 
     /** 
      * Constructor used to initialize name to n; numFinish to 0; loseTurn to false
@@ -16,6 +28,7 @@ public class Player {
         setName(n);
         setNumFinish(0);
         setLoseTurn(false);
+        setExtraTurn(false);
     }
 
     /**
@@ -51,6 +64,14 @@ public class Player {
     }
 
     /**
+     * Method used to set extraTurn
+     * @param e used to set the extraTurn's value
+     */
+    public void setExtraTurn(boolean e) {
+        extraTurn = e;
+    }
+
+    /**
      * Method used to get name
      * @return the player's name
      */
@@ -67,10 +88,66 @@ public class Player {
     }
 
     /**
-     * Method used to get numFinish
+     * Method used to get loseTurn
      * @return if to lose a turn
      */
     public boolean getLoseTurn() {
         return loseTurn;
+    }
+
+    /**
+     * Method used to get extraTurn
+     * @return if to get an extra turn
+     */
+    public boolean getExtraTurn() {
+        return extraTurn;
+    }
+
+    /**Method used to instantiate the player’s pieces.
+     * @param s Stepper to initialize player's stepper to
+     * @param z Zigzagger to initialize player's zigzagger to
+     * @param b Bumper to initialize player's bumper to
+     */
+    public void setPieces(Stepper s, Zigzagger z, Bumper b) {
+        steppy = s;
+        ziggy = z;
+        bumpy = b;
+    }
+
+    /**Method used to set the isFinished data member of player’s piece 
+     * (indicated by the parameter) to true. 
+     * @param piece piece to set as finished*/
+    public void setPieceFinished(PlayerItem piece) {
+        piece.setIsFinished(true);
+    }
+
+    /**
+     * Returns whether or not the player’s piece (indicated by the
+     * parameter) is finished. Values for parameter are 1 (stepper), 2 (zigzagger) or 3 (bumper).
+    */
+    public boolean isPieceFinished(int item) {
+        switch(item) {
+            case 1:
+                return steppy.getIsFinished();
+            case 2:
+                return ziggy.getIsFinished();
+            case 3:
+            default:
+                return bumpy.getIsFinished();
+        }
+    }
+
+    /**Returns a reference to the player’s piece (indicated by the 
+     * parameter). Values for parameter are 1 (stepper), 2 (zigzagger) or 3 (bumper). */
+    public PlayerItem getPiece(int piece) {
+        switch(piece) {
+            case 1:
+                return steppy;
+            case 2:
+                return ziggy;
+            case 3:
+            default:
+                return bumpy;
+        }
     }
 } //Player
