@@ -1,8 +1,10 @@
 public class Player {
     /**Contains the name of the player This will be a single word*/
     private String name;
+
     /**Contains the number of game pieces the player has successfully gotten to FINISH.*/
     private int numFinish;
+
     /**Used to indicate whether or not the player should lose a turn on the next round*/
     boolean loseTurn;
 
@@ -11,9 +13,9 @@ public class Player {
      * @param n Used to set the player's name
     */
     public Player(String n) {
-        name = n;
-        numFinish = 0;
-        loseTurn = false;
+        setName(n);
+        setNumFinish(0);
+        setLoseTurn(false);
     }
 
     /**
@@ -24,19 +26,20 @@ public class Player {
     }
 
     /**
-     * Method used to set name
+     * Method used to set name. If name is empty / null default name to Player. 
+     * If name contains spaces first word in string will be used as name
      * @param n used to set the player's name
      */
     public void setName(String n) {
-        name = n;
+        name = n == null || n.isEmpty() ? "Player" : n.split(" ")[0]; 
     }
 
     /**
-     * Method used to set numFinish
-     * @param n used to set the number finished pieces
+     * Method used to set numFinish. If n is below 0, will default to 0
+     * @param num used to set the number finished pieces
      */
-    public void setNumFinish(int n) {
-        numFinish = n;
+    public void setNumFinish(int num) {
+        numFinish = num < 0 ? 0 : num;
     }
 
     /**
@@ -70,4 +73,4 @@ public class Player {
     public boolean getLoseTurn() {
         return loseTurn;
     }
-}   
+} //Player

@@ -1,6 +1,7 @@
 public class BoardItem {
     /**Contains the type of the item. The descriptor will be a word.*/
     private String type;
+    
     /**Contains the character which will be used to represent the creature on the board. */
     private char symbol;
 
@@ -31,4 +32,4 @@ public class BoardItem {
     public void setSymbol(char symbol) {
         this.symbol = symbol;
     }
-}
+} //BoardItem
